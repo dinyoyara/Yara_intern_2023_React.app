@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import GlobalStyle from './styles/global.css';
-import Header from './Header';
-import Main from './main';
+import Header from './components/Header';
+import Main from './components/Main';
 
 function App() {
     return (
