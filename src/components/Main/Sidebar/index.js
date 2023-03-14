@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 
-import StyledNavElement from '../../../shared/Nav.element/styledNavElement';
+import StyledNavElement from '../../../shared/NavElement/styledNavElement';
 import { navElementSize } from '../../../styles/const';
 
 const Sidebar = ({ className, children }) => {
