@@ -1,15 +1,29 @@
 import React from 'react';
-import { Row } from 'react-flexa';
+import { Row, Col } from 'react-flexa';
+import { useHistory } from 'react-router';
 
 import logo from '../../assets/images/logo.jpg';
 import StyledBanner from './Banner/styledBanner';
 import StyledImage from '../../shared/Image/styledImage';
+import { logoSize } from '../../styles/const';
 
 const Header = () => {
+    const history = useHistory();
+
     return (
-        <Row style={{ margin: '0' }}>
-            <StyledImage src={logo} alt='Logo' width='5rem' height='5rem' />
-            <StyledBanner />
+        <Row gutter='0px'>
+            <Col xs={`${logoSize}px`} gutter='0px' style={{ height: '80px' }}>
+                <StyledImage
+                    onClick={() => history.push('/')}
+                    src={logo}
+                    alt='Logo'
+                    width={`${logoSize}px`}
+                    height={`${logoSize}px`}
+                />
+            </Col>
+            <Col xs={`calc(100vw - ${logoSize}px)`} gutter='0px'>
+                <StyledBanner />
+            </Col>
         </Row>
     );
 };
