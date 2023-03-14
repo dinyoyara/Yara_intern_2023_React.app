@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-const StyledBanner = styled('div')`
+import Banner from '.';
+
+const StyledBanner = styled(Banner)`
     background: rgba(0, 0, 0, 0.1);
     height: 5rem;
     width: calc(100vw - 5rem);
