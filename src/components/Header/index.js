@@ -8,7 +8,7 @@ import StyledImg from '../../shared/Image/styledImage';
 const Header = () => {
     return (
         <Row style={{ margin: '0' }}>
-            <StyledImg src={logo} alt='Logo' width='80px' height='80px' />
+            <StyledImg src={logo} alt='Logo' width='5rem' height='5rem' />
             <StyledBanner />
         </Row>
     );
