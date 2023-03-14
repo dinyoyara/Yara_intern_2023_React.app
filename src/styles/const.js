@@ -1,3 +1,3 @@
 const logoSize = 80;
-
-export { logoSize };
+const navElementSize = 40;
+export { logoSize, navElementSize };
