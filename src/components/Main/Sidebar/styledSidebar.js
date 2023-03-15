@@ -1,12 +1,9 @@
 import styled from 'styled-components';
 
-import Sidebar from '.';
-import { logoSize } from '../../../styles/const';
-
-const StyledSidebar = styled(Sidebar)`
+const StyledSidebar = styled.div`
     box-sizing: border-box;
     width: 100%;
-    height: calc(100vh - ${logoSize}px);
+    height: ${(p) => p.height};
     background: rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;

@@ -1,11 +1,9 @@
 import React from 'react';
 
-const NavElement = ({ className, children, onClick }) => {
-    return (
-        <div className={className} onClick={onClick}>
-            {children}
-        </div>
-    );
+import StyledNavElement from './styledNavElement';
+
+const NavElement = ({ children, ...styleProps }) => {
+    return <StyledNavElement {...styleProps}>{children}</StyledNavElement>;
 };
 
 export default NavElement;

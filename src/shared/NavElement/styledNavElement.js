@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-import NavElement from '.';
-
-const StyledNavElement = styled(NavElement)`
+const StyledNavElement = styled('div')`
     height: ${(p) => p.height};
     width: ${(p) => p.width};
     cursor: pointer;

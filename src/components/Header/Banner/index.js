@@ -1,7 +1,9 @@
 import React from 'react';
 
-const Banner = ({ className, children }) => {
-    return <div className={className}>{children}</div>;
+import StyledBanner from './styledBanner';
+
+const Banner = (props) => {
+    return <StyledBanner {...props} />;
 };
 
 export default Banner;

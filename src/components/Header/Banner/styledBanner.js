@@ -1,10 +1,7 @@
 import styled from 'styled-components';
 
-import Banner from '.';
-import { logoSize } from '../../../styles/const';
-
-const StyledBanner = styled(Banner)`
-    height: ${logoSize}px;
+const StyledBanner = styled('div')`
+    height: ${(p) => p.height};
     background: rgba(0, 0, 0, 0.1);
 `;
 
