@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Col, Row } from 'react-flexa';
 
 import Input from './Input';
@@ -7,8 +7,18 @@ import StyledForm from './styledForm';
 import { inputSize } from '../../../styles/const';
 
 const Form = () => {
+    const [firstName, setFirstName] = useState('');
+
+    const clearHandle = () => {
+        console.log('clear');
+    };
+
+    const sumbitHandle = () => {
+        console.log('submit');
+    };
+
     return (
-        <StyledForm>
+        <StyledForm width={`${inputSize}px`}>
             <Input
                 type='text'
                 id='firstName'
@@ -28,10 +38,10 @@ const Form = () => {
 
             <Row gutter='0px' justifyContent='space-between'>
                 <Col xs={4} gutter='0px'>
-                    <Button text='Clear' />
+                    <Button text='Clear' type='button' handleClick={clearHandle} />
                 </Col>
                 <Col xs={4} gutter='0px'>
-                    <Button text='Sumbit' />
+                    <Button text='Sumbit' type='button' handleClick={sumbitHandle} />
                 </Col>
             </Row>
         </StyledForm>
