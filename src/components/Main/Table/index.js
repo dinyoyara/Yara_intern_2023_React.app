@@ -45,7 +45,8 @@ const Table = () => {
             </StyledTable>
 
             <details>
-                <summary style={{ marginLeft: '50px' }}>form</summary>
+                <summary style={{ marginLeft: '50px', color: 'gray', cursor: 'pointer' }}>Add a new item</summary>
+                <Form clearBtn={false} showText={false} importSubmitFunc={addItemHadle} />
             </details>
         </>
     );
