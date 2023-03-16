@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Col, Row } from 'react-flexa';
 
 import Input from './Input';
-import StyledForm from './styledForm';
+import StyledForm from './style.css';
 import Button from '../../../shared/Button';
 import { inputSize } from '../../../styles/const';
-import { checkValuesAreEmpty, checkValuesAreDefined } from '../helpers/checkValuesAreDefined';
+import { checkValuesAreEmpty, checkValuesAreDefined } from './helpers';
 
 const Form = () => {
     const [firstName, setFirstName] = useState('');
@@ -53,7 +53,6 @@ const Form = () => {
     const checkFormIsValid = () => {
         const validValue = checkValuesAreEmpty(fieldsErrors.age, fieldsErrors.lastName, fieldsErrors.firstName);
         const notEmptyFields = checkValuesAreDefined(firstName, lastname, age);
-        console.log(validValue, notEmptyFields);
         setFormIsValid(validValue && notEmptyFields);
     };
 
