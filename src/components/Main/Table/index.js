@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 
-import StyledTable from './styles.css';
+import Form from '../Form';
 import TableRow from './TableRow';
+import StyledTable from './styles.css';
 import { tableRowSize } from '../../../styles/const';
 
 const people = [
-    { firstName: 'Marya', lastName: 'Nedeva', age: 32 },
-    { firstName: 'Stoyan', lastName: 'Dimov', age: 20 },
-    { firstName: 'Viktor', lastName: 'Mitev', age: 50 }
+    { firstName: 'Marya', lastName: 'Nedeva', age: 32, country: 'Bulgaria' },
+    { firstName: 'Stoyan', lastName: 'Dimov', age: 20, country: 'Bulgaria' },
+    { firstName: 'Viktor', lastName: 'Mitev', age: 50, country: 'Bulgaria' }
 ];
 
 const Table = () => {
@@ -17,7 +18,15 @@ const Table = () => {
         <>
             <StyledTable width={`${tableRowSize}px`}>
                 <thead style={{ marginBottom: '10px' }}>
-                    <TableRow fn='First name' ln='Last name' age='Age' color='white' bgc='grey' height='40px' />
+                    <TableRow
+                        fn='First name'
+                        ln='Last name'
+                        age='Age'
+                        country='Country'
+                        color='white'
+                        bgc='grey'
+                        height='40px'
+                    />
                 </thead>
                 <tbody>
                     {tableData.map((p, i) => (
@@ -26,6 +35,7 @@ const Table = () => {
                             fn={p.firstName}
                             ln={p.lastName}
                             age={p.age}
+                            country={p.country}
                             color='gray'
                             bgc='mintcream'
                             height='25px'
