@@ -14,6 +14,24 @@ const people = [
 const Table = () => {
     const [tableData, setTableData] = useState(people);
 
+    const addItemHadle = () => {
+        document.getElementsByTagName('details')[0].removeAttribute('open');
+
+        const person = {
+            firstName: document.getElementById('firstName').value,
+            lastName: document.getElementById('lastName').value,
+            age: document.getElementById('age').value,
+            country: document.getElementById('country').value
+        };
+
+        setTableData((prev) => [...prev, person]);
+
+        document.getElementById('firstName').value = '';
+        document.getElementById('lastName').value = '';
+        document.getElementById('age').value = '';
+        document.getElementById('country').value = '';
+    };
+
     return (
         <>
             <StyledTable width={`${tableRowSize}px`}>
