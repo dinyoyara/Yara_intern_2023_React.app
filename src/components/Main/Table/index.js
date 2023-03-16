@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { Row } from 'react-flexa';
 
 import Form from '../Form';
 import TableRow from './TableRow';
 import StyledTable from './styles.css';
-import { tableRowSize } from '../../../styles/const';
+import { tableRowWidth } from '../../../styles/const';
 
 const people = [
     { firstName: 'Marya', lastName: 'Nedeva', age: 32, country: 'Bulgaria' },
@@ -13,28 +14,24 @@ const people = [
 
 const Table = () => {
     const [tableData, setTableData] = useState(people);
+    const [clearForm, setClearForm] = useState(false);
 
-    const addItemHadle = () => {
-        document.getElementsByTagName('details')[0].removeAttribute('open');
-
-        const person = {
-            firstName: document.getElementById('firstName').value,
-            lastName: document.getElementById('lastName').value,
-            age: document.getElementById('age').value,
-            country: document.getElementById('country').value
-        };
-
+    const addItemHadle = (person) => {
         setTableData((prev) => [...prev, person]);
-
-        document.getElementById('firstName').value = '';
-        document.getElementById('lastName').value = '';
-        document.getElementById('age').value = '';
-        document.getElementById('country').value = '';
+        document.getElementsByTagName('details')[0].removeAttribute('open');
+        setClearForm(true);
     };
 
     return (
         <>
-            <StyledTable width={`${tableRowSize}px`}>
+            <Row
+                gutter='0px'
+                justifyContent='center'
+                style={{ width: `${tableRowWidth}px`, marginLeft: '80px', marginTop: '30px' }}
+            >
+                <h2>Table name</h2>
+            </Row>
+            <StyledTable width={`${tableRowWidth}px`}>
                 <thead style={{ marginBottom: '10px' }}>
                     <TableRow
                         fn='First name'
@@ -43,7 +40,7 @@ const Table = () => {
                         country='Country'
                         color='white'
                         bgc='grey'
-                        height='40px'
+                        height='50px'
                     />
                 </thead>
                 <tbody>
@@ -56,7 +53,7 @@ const Table = () => {
                             country={p.country}
                             color='gray'
                             bgc='mintcream'
-                            height='25px'
+                            height='35px'
                         />
                     ))}
                 </tbody>
@@ -64,7 +61,13 @@ const Table = () => {
 
             <details>
                 <summary style={{ marginLeft: '50px', color: 'gray', cursor: 'pointer' }}>Add a new item</summary>
-                <Form clearBtn={false} showText={false} importSubmitFunc={addItemHadle} />
+                <Form
+                    formName={null}
+                    showClearBtn={false}
+                    showText={false}
+                    importSubmitFunc={addItemHadle}
+                    clearForm={clearForm}
+                />
             </details>
         </>
     );

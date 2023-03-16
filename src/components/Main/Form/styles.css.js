@@ -2,11 +2,16 @@ import styled from 'styled-components';
 
 const StyledForm = styled('form')`
     width: ${(p) => p.width};
-    margin: 20px 50px;
-    height: 150px;
+    height: ${(p) => p.height};
+    margin: 30px 80px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 `;
 
-export default StyledForm;
+const StyledError = styled('div')`
+    font-size: 14px;
+    color: red;
+`;
+
+export { StyledForm, StyledError };

@@ -16,7 +16,7 @@ const Main = () => {
             <Col xs={`calc(100vw - ${logoSize}px)`} gutter='0px'>
                 <Switch>
                     <Route exact path='/form'>
-                        <Form clearBtn={true} showText={true} />
+                        <Form formName='Form name' showClearBtn={true} showText={true} />
                     </Route>
                     <Route exact path='/table' component={Table} />
                 </Switch>

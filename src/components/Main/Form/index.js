@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Col, Row } from 'react-flexa';
 
 import Input from './Input';
-import StyledForm from './style.css';
+import { StyledForm, StyledError } from './styles.css';
 import Button from '../../../shared/Button';
-import { formSize } from '../../../styles/const';
+import { formWidth, formHeight, inputHeight } from '../../../styles/const';
 import { checkValuesAreEmpty, checkValuesAreDefined } from './helpers';
 
-const Form = ({ clearBtn, showText, importSubmitFunc }) => {
+const Form = ({ formName, showClearBtn, showText, importSubmitFunc, clearForm }) => {
     const [firstName, setFirstName] = useState('');
-    const [lastname, setLastName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [age, setAge] = useState('');
     const [country, setCountry] = useState('');
     const [text, setText] = useState('');
@@ -18,7 +18,11 @@ const Form = ({ clearBtn, showText, importSubmitFunc }) => {
 
     useEffect(() => {
         checkFormIsValid();
-    }, [firstName, lastname, age, country, fieldsErrors]);
+    }, [firstName, lastName, age, country, fieldsErrors]);
+
+    useEffect(() => {
+        clearHandle();
+    }, [clearForm]);
 
     const clearHandle = () => {
         setFirstName('');
@@ -31,7 +35,7 @@ const Form = ({ clearBtn, showText, importSubmitFunc }) => {
 
     const sumbitHandle = () => {
         if (!formIsValid) return;
-        setText(`This is ${firstName} ${lastname} - ${age} years old from ${country}!`);
+        setText(`This is ${firstName} ${lastName} - ${age} years old from ${country}!`);
     };
 
     const validateField = (fieldName, value) => {
@@ -65,16 +69,22 @@ const Form = ({ clearBtn, showText, importSubmitFunc }) => {
             fieldsErrors.firstName,
             fieldsErrors.country
         );
-        const notEmptyFields = checkValuesAreDefined(firstName, lastname, age, country);
+        const notEmptyFields = checkValuesAreDefined(firstName, lastName, age, country);
         setFormIsValid(validValue && notEmptyFields);
     };
 
     return (
         <>
-            <StyledForm width={`${formSize}px`}>
-                <Row gutter='5px' justifyContent='space-between' style={{ width: '100%' }}>
-                    <Col xs={5} gutter='0px'>
+            <StyledForm width={`${formWidth}px`} height={`${formHeight}px`}>
+                {formName ? (
+                    <Row gutter='0px' justifyContent='center' style={{ width: '100%' }}>
+                        <h2>{formName}</h2>
+                    </Row>
+                ) : null}
+                <Row gutter='5px' justifyContent='space-between' style={{ width: '100%', height: '70%' }}>
+                    <Col xs={5.5} gutter='0px'>
                         <Input
+                            height={`${inputHeight}px`}
                             type='text'
                             id='firstName'
                             label='First name'
@@ -85,25 +95,27 @@ const Form = ({ clearBtn, showText, importSubmitFunc }) => {
                                 validateField('firstName', e.target.value);
                             }}
                         />
-                        {fieldsErrors.firstName ?? <div>{fieldsErrors.firstName}</div>}
+                        {fieldsErrors.firstName ? <StyledError>{fieldsErrors.firstName}</StyledError> : <div></div>}
                     </Col>
-                    <Col xs={5} gutter='0px'>
+                    <Col xs={5.5} gutter='0px'>
                         <Input
+                            height={`${inputHeight}px`}
                             type='text'
                             id='lastName'
                             label='Last name'
                             placeholder='Enter your last name here'
-                            value={lastname}
+                            value={lastName}
                             onChange={(e) => {
                                 e.persist();
                                 setLastName(e.target.value);
                                 validateField('lastName', e.target.value);
                             }}
                         />
-                        {fieldsErrors.lastName ?? <div>{fieldsErrors.lastName}</div>}
+                        {fieldsErrors.lastName ? <StyledError>{fieldsErrors.lastName}</StyledError> : null}
                     </Col>
-                    <Col xs={5} gutter='0px'>
+                    <Col xs={5.5} gutter='0px'>
                         <Input
+                            height={`${inputHeight}px`}
                             type='number'
                             id='age'
                             label='Age'
@@ -115,10 +127,11 @@ const Form = ({ clearBtn, showText, importSubmitFunc }) => {
                                 validateField('age', e.target.value);
                             }}
                         />
-                        {fieldsErrors.age ?? <div>{fieldsErrors.age}</div>}
+                        {fieldsErrors.age ? <StyledError>{fieldsErrors.age}</StyledError> : null}
                     </Col>
-                    <Col xs={5} gutter='0px'>
+                    <Col xs={5.5} gutter='0px'>
                         <Input
+                            height={`${inputHeight}px`}
                             type='text'
                             id='country'
                             label='Country'
@@ -130,22 +143,26 @@ const Form = ({ clearBtn, showText, importSubmitFunc }) => {
                                 validateField('country', e.target.value);
                             }}
                         />
-                        {fieldsErrors.country ?? <div>{fieldsErrors.country}</div>}
+                        {fieldsErrors.country ? <StyledError>{fieldsErrors.country}</StyledError> : null}
                     </Col>
                 </Row>
 
                 <Row gutter='0px' justifyContent='space-between'>
-                    {clearBtn ? (
-                        <Col xs={4} gutter='0px'>
+                    {showClearBtn ? (
+                        <Col xs={5.5} gutter='0px'>
                             <Button active={true} text='Clear' type='button' handleClick={clearHandle} />
                         </Col>
                     ) : null}
-                    <Col xs={4} gutter='0px'>
+                    <Col xs={5.5} gutter='0px'>
                         <Button
                             active={formIsValid}
                             text='Sumbit'
                             type='button'
-                            handleClick={importSubmitFunc || sumbitHandle}
+                            handleClick={
+                                importSubmitFunc
+                                    ? () => importSubmitFunc({ firstName, lastName: lastName, age, country })
+                                    : sumbitHandle
+                            }
                         />
                     </Col>
                 </Row>
