@@ -7,7 +7,7 @@ import Button from '../../../shared/Button';
 import { formSize } from '../../../styles/const';
 import { checkValuesAreEmpty, checkValuesAreDefined } from './helpers';
 
-const Form = ({ clearBtn, showText }) => {
+const Form = ({ clearBtn, showText, importSubmitFunc }) => {
     const [firstName, setFirstName] = useState('');
     const [lastname, setLastName] = useState('');
     const [age, setAge] = useState('');
@@ -137,11 +137,16 @@ const Form = ({ clearBtn, showText }) => {
                 <Row gutter='0px' justifyContent='space-between'>
                     {clearBtn ? (
                         <Col xs={4} gutter='0px'>
-                            <Button text='Clear' type='button' handleClick={clearHandle} />
+                            <Button active={true} text='Clear' type='button' handleClick={clearHandle} />
                         </Col>
                     ) : null}
                     <Col xs={4} gutter='0px'>
-                        <Button text='Sumbit' type='button' handleClick={sumbitHandle} />
+                        <Button
+                            active={formIsValid}
+                            text='Sumbit'
+                            type='button'
+                            handleClick={importSubmitFunc || sumbitHandle}
+                        />
                     </Col>
                 </Row>
             </StyledForm>
