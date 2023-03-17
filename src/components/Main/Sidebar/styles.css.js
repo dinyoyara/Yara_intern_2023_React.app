@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledSidebar = styled.div`
+const StyledSidebar = styled('div')`
     box-sizing: border-box;
     width: 100%;
     height: ${(p) => p.height};
@@ -8,7 +8,7 @@ const StyledSidebar = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 1.5rem;
+    padding-top: 24px;
 `;
 
 export default StyledSidebar;
