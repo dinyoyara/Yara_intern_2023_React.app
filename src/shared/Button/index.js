@@ -1,6 +1,6 @@
 import React from 'react';
 
-import StyledButton from './styledButton';
+import StyledButton from './styles.css';
 
 const Button = ({ text, type, handleClick, active }) => {
     return (
