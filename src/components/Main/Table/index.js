@@ -2,21 +2,16 @@ import React, { useState } from 'react';
 import { Row } from 'react-flexa';
 
 import Form from '../Form';
+import People from './constants';
 import TableRow from './TableRow';
 import StyledTable from './styles.css';
 import { tableRowWidth } from '../../../styles/const';
 
-const people = [
-    { firstName: 'Marya', lastName: 'Nedeva', age: 32, country: 'Bulgaria' },
-    { firstName: 'Stoyan', lastName: 'Dimov', age: 20, country: 'Bulgaria' },
-    { firstName: 'Viktor', lastName: 'Mitev', age: 50, country: 'Bulgaria' }
-];
-
 const Table = () => {
-    const [tableData, setTableData] = useState(people);
+    const [tableData, setTableData] = useState(People);
     const [clearForm, setClearForm] = useState(false);
 
-    const addItemHadle = (person) => {
+    const addItemHadler = (person) => {
         setTableData((prev) => [...prev, person]);
         document.getElementsByTagName('details')[0].removeAttribute('open');
         setClearForm(true);
@@ -65,7 +60,7 @@ const Table = () => {
                     formName={null}
                     showClearBtn={false}
                     showText={false}
-                    importSubmitFunc={addItemHadle}
+                    importSubmitFunc={addItemHadler}
                     clearForm={clearForm}
                 />
             </details>
