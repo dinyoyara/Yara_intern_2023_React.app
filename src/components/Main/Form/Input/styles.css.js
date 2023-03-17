@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledInput = styled('div')`
+const StyledInputContainer = styled('div')`
     height: ${(p) => p.height};
     display: flex;
     flex-direction: column;
@@ -8,4 +8,11 @@ const StyledInput = styled('div')`
     font-size: 1rem;
 `;
 
-export default StyledInput;
+const StyledInput = styled('input')`
+    padding 5px;
+    background: rgba(192,192,192, 0.2);
+    border: none;
+    border-radius: 5px;
+`;
+
+export { StyledInputContainer, StyledInput };

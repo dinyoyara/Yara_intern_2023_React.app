@@ -1,12 +1,12 @@
 import React from 'react';
 
-import StyledInput from './styles.css';
+import { StyledInputContainer, StyledInput } from './styles.css';
 
-const Input = ({ type, id, placeholder, label, width, value, onChange, height }) => {
+const InputContainer = ({ type, id, placeholder, label, width, value, onChange, height }) => {
     return (
-        <StyledInput width={width} height={height}>
+        <StyledInputContainer width={width} height={height}>
             <label htmlFor={id}>{label}</label>
-            <input
+            <StyledInput
                 type={type}
                 id={id}
                 placeholder={placeholder}
@@ -14,8 +14,8 @@ const Input = ({ type, id, placeholder, label, width, value, onChange, height })
                 onChange={onChange}
                 style={{ height: '45%' }}
             />
-        </StyledInput>
+        </StyledInputContainer>
     );
 };
 
-export default Input;
+export default InputContainer;
