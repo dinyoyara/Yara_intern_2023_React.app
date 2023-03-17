@@ -12,7 +12,7 @@ const Header = () => {
 
     return (
         <Row gutter='0px'>
-            <Col xs={`${logoSize}px`} gutter='0px' style={{ height: '80px' }}>
+            <Col xs={`${logoSize}px`} gutter='0px' style={{ height: `${logoSize}px` }}>
                 <Image
                     onClick={() => history.push('/')}
                     src={logo}

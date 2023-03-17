@@ -1,6 +1,6 @@
 import React from 'react';
 
-import StyledBanner from './styledBanner';
+import StyledBanner from './styles.css';
 
 const Banner = (props) => {
     return <StyledBanner {...props} />;
