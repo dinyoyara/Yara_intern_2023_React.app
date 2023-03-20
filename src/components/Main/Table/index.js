@@ -5,15 +5,17 @@ import Form from '../Form';
 import People from './constants';
 import TableRow from './TableRow';
 import StyledTable from './styles.css';
+import Button from '../../../shared/Button';
 import { tableRowWidth } from '../../../styles/const';
 
 const Table = () => {
-    const [tableData, setTableData] = useState(People);
+    const [showFrom, setShowForm] = useState(false);
     const [clearForm, setClearForm] = useState(false);
+    const [tableData, setTableData] = useState(People);
 
     const addItemHadler = (person) => {
         setTableData((prev) => [...prev, person]);
-        document.getElementsByTagName('details')[0].removeAttribute('open');
+        setShowForm(false);
         setClearForm(true);
     };
 
@@ -54,8 +56,15 @@ const Table = () => {
                 </tbody>
             </StyledTable>
 
-            <details>
-                <summary style={{ marginLeft: '50px', color: 'gray', cursor: 'pointer' }}>Add a new item</summary>
+            <Row gutter='0px' style={{ width: '130px', marginLeft: '80px' }}>
+                <Button
+                    type='button'
+                    active={true}
+                    handleClick={() => setShowForm((prev) => !prev)}
+                    text='Add a new person'
+                />
+            </Row>
+            {showFrom ? (
                 <Form
                     formName={null}
                     showClearBtn={false}
@@ -63,7 +72,7 @@ const Table = () => {
                     importSubmitFunc={addItemHadler}
                     clearForm={clearForm}
                 />
-            </details>
+            ) : null}
         </>
     );
 };
